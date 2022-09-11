@@ -27,6 +27,8 @@ public class Teste {
 		System.out.println("Idade do aluno 1 é = " + aluno1.getIdade());
 		System.out.println("Data de Nascimento do aluno 1 é = " + aluno1.getDataNascimento());
 		System.out.println("Média das notas do aluno 1 é = " + aluno1.getMediaNota());
+		System.out.println("Resultado = " + (aluno1.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
+		System.out.println("Resultado 2 = " + aluno1.getAlunoAprovado2());
 		
 		System.out.println("---------------------------------------------------------------------");
 		
