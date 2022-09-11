@@ -8,8 +8,6 @@ public class Teste {
 
 	public static void main(String[] args) {
 
-		Aluno aluno1 = new Aluno();
-
 		String nome = JOptionPane.showInputDialog("Qual o nome do aluno?");
 		String idade = JOptionPane.showInputDialog("Qual a idade?");
 		String dataNascimento = JOptionPane.showInputDialog("Data de Nascimento?");
@@ -24,6 +22,8 @@ public class Teste {
 		String nota2 = JOptionPane.showInputDialog("Nota2: ");
 		String nota3 = JOptionPane.showInputDialog("Nota3: ");
 		String nota4 = JOptionPane.showInputDialog("Nota4: ");
+
+		Aluno aluno1 = new Aluno();
 
 		aluno1.setNome(nome);
 		aluno1.setIdade(Integer.valueOf(idade));
@@ -40,12 +40,10 @@ public class Teste {
 		aluno1.setNota3(Double.parseDouble(nota3));
 		aluno1.setNota4(Double.parseDouble(nota4));
 
-		System.out.println("Nome do aluno 1 é = " + aluno1.getNome());
-		System.out.println("Idade do aluno 1 é = " + aluno1.getIdade());
-		System.out.println("Data de Nascimento do aluno 1 é = " + aluno1.getDataNascimento());
-		System.out.println("Média das notas do aluno 1 é = " + aluno1.getMediaNota());
-		System.out.println("Resultado = " + (aluno1.getAlunoAprovado() ? "Aprovado" : "Reprovado"));
-		System.out.println("Resultado 2 = " + aluno1.getAlunoAprovado2());
+		Aluno aluno = new Aluno();
+		System.out.println(aluno1.toString());
+		System.out.println("Média do aluno = " + aluno1.getMediaNota());
+		System.out.println("Resultado = " + aluno1.getAlunoAprovado2());
 
 	}
 
