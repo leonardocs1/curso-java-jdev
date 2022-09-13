@@ -40,7 +40,7 @@ public class Teste {
 			 * aluno1.setSerieMatriculado(serieEscolar); aluno1.setNomeEscola(nomeEscola);
 			 */
 
-			for (int pos = 1; pos <= 4; pos++) {
+			for (int pos = 1; pos <= 1; pos++) {
 				String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + pos + " ?");
 				String notaDisciplina = JOptionPane.showInputDialog("Nota da disciplina " + pos + " ?");
 
@@ -72,6 +72,20 @@ public class Teste {
 		
 		for (int pos = 0; pos < alunos.size(); pos++) {
 			Aluno aluno = alunos.get(pos);
+			
+			if (aluno.getNome().equalsIgnoreCase("alex")) {
+				Aluno trocar = new Aluno();
+				trocar.setNome("Aluno foi trocado");
+				
+				Disciplina disciplina = new Disciplina();
+				disciplina.setDisciplina("Matematica");
+				disciplina.setNota(96);
+				
+				trocar.getDisciplinas().add(disciplina);
+				
+				alunos.set(pos, trocar);
+				aluno = alunos.get(pos);
+			}
 			
 			System.out.println("Aluno = " + aluno.getNome());
 			System.out.println("Média do aluno = " + aluno.getMediaNota());
