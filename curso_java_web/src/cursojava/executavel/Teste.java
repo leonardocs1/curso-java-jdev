@@ -71,11 +71,15 @@ public class Teste {
 		}
 
 		for (Aluno aluno : alunos) {
-			System.out.println(aluno.toString());
-			System.out.println("Disciplinas:" + aluno.getDisciplinas().toString());
-			System.out.println("Média do aluno = " + aluno.getMediaNota());
-			System.out.println("Resultado = " + aluno.getAlunoAprovado2());
-			System.out.println("---------------------------------------------------------");
+			if (aluno.getNome().equalsIgnoreCase("alex")) {
+				System.out.println(aluno.toString());
+				System.out.println("Disciplinas:" + aluno.getDisciplinas().toString());
+				System.out.println("Média do aluno = " + aluno.getMediaNota());
+				System.out.println("Resultado = " + aluno.getAlunoAprovado2());
+				System.out.println("---------------------------------------------------------");
+				break;
+			}
+			
 		}
 
 	}
