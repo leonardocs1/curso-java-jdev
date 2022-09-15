@@ -8,8 +8,10 @@ import javax.swing.JOptionPane;
 
 import curso.java.interfaces.PermitirAcesso;
 import cursojava.classes.Aluno;
+import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
 import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
 
 public class Teste {
@@ -17,10 +19,9 @@ public class Teste {
 	public static void main(String[] args) {
 
 		String login = JOptionPane.showInputDialog("Informe o login");
-		String senha = JOptionPane.showInputDialog("Informe o login");
-		
+		String senha = JOptionPane.showInputDialog("Informe o senha");
 
-		if (new Secretario().autenticar(login, senha)) {
+		if (new FuncaoAutenticacao(new Diretor(login, senha)).autenticar()) {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
