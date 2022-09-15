@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import curso.java.interfaces.PermitirAcesso;
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
 import cursojava.classes.Secretario;
@@ -18,11 +19,8 @@ public class Teste {
 		String login = JOptionPane.showInputDialog("Informe o login");
 		String senha = JOptionPane.showInputDialog("Informe o login");
 		
-		Secretario secretario = new Secretario();
-		secretario.setLogin(login);
-		secretario.setSenha(senha);
 
-		if (secretario.autenticar()) {
+		if (new Secretario().autenticar(login, senha)) {
 
 			List<Aluno> alunos = new ArrayList<Aluno>();
 
