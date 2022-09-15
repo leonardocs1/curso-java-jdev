@@ -118,4 +118,9 @@ public class Aluno extends Pessoa {
 		// TODO Auto-generated method stub
 		return idade >= 21;
 	}
+
+	@Override
+	public double salario() {
+		return 1500.90;
+	}
 }
