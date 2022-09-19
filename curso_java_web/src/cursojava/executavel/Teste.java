@@ -1,24 +1,28 @@
 package cursojava.executavel;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import curso.java.interfaces.PermitirAcesso;
 import cursojava.classes.Aluno;
 import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
-import cursojava.classes.Secretario;
 import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
+import cursojava.excecao.ExcecaoProcessarNota;
 
 public class Teste {
 
 	public static void main(String[] args) {
 
 		try {
+			
+			lerArquivo();
 
 			String login = JOptionPane.showInputDialog("Informe o login");
 			String senha = JOptionPane.showInputDialog("Informe o senha");
@@ -33,31 +37,33 @@ public class Teste {
 				 */
 				HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
-				for (int qtd = 0; qtd <= 1; qtd++) {
+				for (int qtd = 0; qtd <= 0; qtd++) {
 
 					String nome = JOptionPane.showInputDialog("Qual o nome do aluno " + (qtd + 1) + "?");
-					/*
-					 * String idade = JOptionPane.showInputDialog("Qual a idade?"); String
-					 * dataNascimento = JOptionPane.showInputDialog("Data de Nascimento?"); String
-					 * rg = JOptionPane.showInputDialog("Qual é o Registro Geral?"); String cpf =
-					 * JOptionPane.showInputDialog("Qual é o CPF?"); String nomeMae =
-					 * JOptionPane.showInputDialog("Nome da mãe? "); String nomePai =
-					 * JOptionPane.showInputDialog("Nome do pai? "); String dataMatricula =
-					 * JOptionPane.showInputDialog("Data Matricula? "); String serieEscolar =
-					 * JOptionPane.showInputDialog("Qual a série escolar? "); String nomeEscola =
-					 * JOptionPane.showInputDialog("Qual o nome da escola? ");
-					 */
+					String idade = JOptionPane.showInputDialog("Qual a idade?");
+
+//					String dataNascimento = JOptionPane.showInputDialog("Data de Nascimento?");
+//					String rg = JOptionPane.showInputDialog("Qual é o Registro Geral?");
+//					String cpf = JOptionPane.showInputDialog("Qual é o CPF?");
+//					String nomeMae = JOptionPane.showInputDialog("Nome da mãe? ");
+//					String nomePai = JOptionPane.showInputDialog("Nome do pai? ");
+//					String dataMatricula = JOptionPane.showInputDialog("Data Matricula? ");
+//					String serieEscolar = JOptionPane.showInputDialog("Qual a série escolar? ");
+//					String nomeEscola = JOptionPane.showInputDialog("Qual o nome da escola? ");
 
 					Aluno aluno1 = new Aluno();
 
 					aluno1.setNome(nome);
-					/*
-					 * aluno1.setIdade(Integer.valueOf(idade));
-					 * aluno1.setDataNascimento(dataNascimento); aluno1.setRegistroGeral(rg);
-					 * aluno1.setNumeroCpf(cpf); aluno1.setNomeMae(nomeMae);
-					 * aluno1.setNomePai(nomePai); aluno1.setDataMatricula(dataMatricula);
-					 * aluno1.setSerieMatriculado(serieEscolar); aluno1.setNomeEscola(nomeEscola);
-					 */
+					aluno1.setIdade(Integer.valueOf(idade));
+
+//					aluno1.setDataNascimento(dataNascimento);
+//					aluno1.setRegistroGeral(rg);
+//					aluno1.setNumeroCpf(cpf);
+//					aluno1.setNomeMae(nomeMae);
+//					aluno1.setNomePai(nomePai);
+//					aluno1.setDataMatricula(dataMatricula);
+//					aluno1.setSerieMatriculado(serieEscolar);
+//					aluno1.setNomeEscola(nomeEscola);
 
 					for (int pos = 1; pos <= 1; pos++) {
 						String nomeDisciplina = JOptionPane.showInputDialog("Nome da disciplina " + pos + " ?");
@@ -127,9 +133,40 @@ public class Teste {
 				JOptionPane.showMessageDialog(null, "Acesso não permitido");
 			}
 
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
+
+			StringBuilder saida = new StringBuilder();
+
+			/* imprime o erro no console java */
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao processar notas");
+
+			/* Mensagem do erro ou causa */
+			System.out.println("Mensagem: " + e.getMessage());
+
+			for (int i = 0; i < e.getStackTrace().length; i++) {
+				saida.append("\n Classe de erro: " + e.getStackTrace()[i].getClassName());
+				saida.append("\n Método de erro: " + e.getStackTrace()[i].getMethodName());
+				saida.append("\n Linha de erro: " + e.getStackTrace()[i].getLineNumber());
+				saida.append("\n Class: " + e.getClass().getName());
+			}
+
+			JOptionPane.showMessageDialog(null, "Erro de conversão de número: " + saida.toString());
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, "Erro de NullPointerException " + e.getClass());
+		} catch (ExcecaoProcessarNota e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro da exceção customizada: " + e.getClass().getName());
+		} finally {
+			JOptionPane.showMessageDialog(null, "Obrigado por aprender Java comigo");
+		}
+	}
+
+	public static void lerArquivo() throws ExcecaoProcessarNota {
+		try {
+			File file = new File("C:\\Users\\leoco\\Downloads\\arquivo.txt");
+			Scanner scanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			throw new ExcecaoProcessarNota(e.getMessage());
 		}
 	}
 
