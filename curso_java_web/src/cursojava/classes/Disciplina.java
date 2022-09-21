@@ -1,18 +1,18 @@
 package cursojava.classes;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Disciplina {
 
-	private double nota;
+	private double[] notas = new double[4];
 	private String disciplina;
-
-	public double getNota() {
-		return nota;
+      
+	public double[] getNotas() {
+		return notas;
 	}
-
-	public void setNota(double nota) {
-		this.nota = nota;
+	public void setNotas(double[] notas) {
+		this.notas = notas;
 	}
 
 	public String getDisciplina() {
@@ -22,10 +22,24 @@ public class Disciplina {
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
 	}
+	
+	public double getMediaNota() {
+		double somaTotal = 0;
+		
+		for (int i = 0; i < notas.length; i++) {
+			somaTotal += notas[i];
+		}
+		
+		return somaTotal / 4;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(disciplina, nota);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(notas);
+		result = prime * result + Objects.hash(disciplina);
+		return result;
 	}
 
 	@Override
@@ -37,13 +51,12 @@ public class Disciplina {
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplina other = (Disciplina) obj;
-		return Objects.equals(disciplina, other.disciplina)
-				&& Double.doubleToLongBits(nota) == Double.doubleToLongBits(other.nota);
+		return Objects.equals(disciplina, other.disciplina) && Arrays.equals(notas, other.notas);
 	}
 
 	@Override
 	public String toString() {
-		return "Disciplina [nota=" + nota + ", disciplina=" + disciplina + "]";
+		return "Disciplina [nota=" + notas + ", disciplina=" + disciplina + "]";
 	}
 
 }

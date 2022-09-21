@@ -12,7 +12,7 @@ public class Diretor extends Pessoa implements PermitirAcesso {
 	private String senha;
 
 	public Diretor() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Diretor(String login, String senha) {
