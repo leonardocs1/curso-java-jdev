@@ -36,9 +36,19 @@ public class ArrayVetor {
 		for (Disciplina d : aluno.getDisciplinas()) {
 			System.out.println("Disciplina: " + d.getDisciplina());
 			
+			double notaMax = 0.0;			
 			for (int i = 0; i < d.getNotas().length; i++) {
 				System.out.println("Nota " + i + " é igual = " + d.getNotas()[i]);
+				if (i == 0) {
+					notaMax = d.getNotas()[i];
+				} else {
+					if (d.getNotas()[i] > notaMax) {
+						notaMax = d.getNotas()[i];
+					}
+				}
 			}
+			System.out.println("A maior nota da disciplina = " + d.getDisciplina() + " e de valor: " + notaMax);
+			
 		}
 		
 	}
