@@ -30,7 +30,7 @@ public class TelaTimeThread extends JDialog {
 	private JButton jButton2 = new JButton("Stop");
 
 	private ImplementacaoFilaThread fila = new ImplementacaoFilaThread();
-	
+
 	public TelaTimeThread() {
 		setTitle("Minha tela de time com Thread");
 		setSize(new Dimension(240, 240));
@@ -68,28 +68,36 @@ public class TelaTimeThread extends JDialog {
 		jButton2.setPreferredSize(new Dimension(92, 25));
 		gridBagConstraints.gridx++;
 		jpanel.add(jButton2, gridBagConstraints);
-		
+
 		jButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ObjetoFilaThread filaThread = new ObjetoFilaThread();
-				filaThread.setNome(mostraTempo.getText());
-				filaThread.setEmail(mostraTempo2.getText());
 				
-				fila.add(filaThread);
-				
+				if (fila == null) {
+					fila = new ImplementacaoFilaThread();
+					fila.start();
+				}
+
+				for (int qtd = 0; qtd < 100; qtd++) { // simuland0 100 envios em massa
+					ObjetoFilaThread filaThread = new ObjetoFilaThread();
+					filaThread.setNome(mostraTempo.getText() + " - " +  qtd);
+					filaThread.setEmail(mostraTempo2.getText() + " - " + qtd);
+
+					fila.add(filaThread);
+				}
+
 			}
 		});
-		
+
 		jButton2.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				fila.stop();
+				fila = null;
 			}
 		});
-		
+
 		fila.start();
 
 		add(jpanel, BorderLayout.WEST);
