@@ -13,35 +13,44 @@ public class ImplementacaoFilaThread extends Thread {
 
 	@Override
 	public void run() {
-		Iterator iteracao = pilha_fila.iterator();
 
-		synchronized (iteracao) { //bloquear o acesso a esta lista por outros processos
-			while (iteracao.hasNext()) { // enquanto conter dados na fila
+		System.out.println("Fila rodando");
 
-				ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next(); // pega o objeto atuals
+		while (true) {
 
-				// Processar 10 mil notas fiscais
-				// Gerar uma lista enorme de PDF
-				// Gerar um envio em massa de email
-				System.out.println("---------------------------------------");
-				System.out.println(processar.getNome());
-				System.out.println(processar.getEmail());
+			synchronized (pilha_fila) { // bloquear o acesso a esta lista por outros processos
+				
+				Iterator iteracao = pilha_fila.iterator();
+				
+				while (iteracao.hasNext()) { // enquanto conter dados na fila
 
-				try {
-					Thread.sleep(100); // Dar um tempo de descarga de memoria
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					ObjetoFilaThread processar = (ObjetoFilaThread) iteracao.next(); // pega o objeto atuals
+
+					// Processar 10 mil notas fiscais
+					// Gerar uma lista enorme de PDF
+					// Gerar um envio em massa de email
+					System.out.println("---------------------------------------");
+					System.out.println(processar.getNome());
+					System.out.println(processar.getEmail());
+
+					iteracao.remove();
+
+					try {
+						Thread.sleep(1000); // Dar um tempo de descarga de memoria
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
-
 			}
-		}
 
-		try {
-			Thread.sleep(1000); // Após processar toda a lista, dar um tempo para limpeza de memoria
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				Thread.sleep(1000); // Após processar toda a lista, dar um tempo para limpeza de memoria
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
