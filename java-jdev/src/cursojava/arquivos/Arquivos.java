@@ -30,7 +30,7 @@ public class Arquivos {
 		pessoas.add(pessoa2);
 		pessoas.add(pessoa3);
 		
-		File arquivo = new File("C:\\Users\\leoco\\git\\repository\\curso_java_web\\src\\cursojava\\arquivos\\arquivo.csv");
+		File arquivo = new File("C:\\projetos\\dev\\curso-java-jdev\\java-jdev\\src\\cursojava\\arquivos\\arquivo.csv");
 		
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
